@@ -3,14 +3,13 @@ function computerPlay() {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
-
 function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'scissors' && computerSelection == 'paper' 
-    || playerSelection == 'rock' && computerSelection == 'scissors'){
+            || playerSelection == 'rock' && computerSelection == 'scissors'){
         return 'win';
     }else if (computerSelection == 'rock' && playerSelection == 'paper' || computerSelection == 'scissors' && playerSelection == 'paper' 
-    || computerSelection == 'rock' && playerSelection == 'scissors'){
+            || computerSelection == 'rock' && playerSelection == 'scissors'){
         return 'lose';
     }else if(playerSelection == computerSelection){
         return 'tie';
