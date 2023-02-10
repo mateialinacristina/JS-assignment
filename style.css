@@ -1,0 +1,18 @@
+.title{
+    text-align: center;
+}
+.selectContainer{
+    column-gap: 100px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+.container{
+    display: flow-root;
+    margin-top: 80px;
+    margin-left: 39em;
+}
+.results{
+    text-align: center;
+    font-size: 30px;
+}
