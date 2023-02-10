@@ -1,47 +1,55 @@
+const computerChoiceDisplay = document.getElementById('computer-choice')
+const userChoiceDisplay = document.getElementById('user-choice')
+const resultDisplay = document.getElementById('result')
+const scoreDisplay = document.getElementById('score')
+const possibleChoices = document.querySelectorAll('button')
+let result;
+let computerSelection;
+let playerSelection;
+let pScore = 0;
+let cScore = 0;
+
 function computerPlay() {
     const arr = ['rock', 'paper', 'scissors'];
-    return arr[Math.floor(Math.random() * arr.length)];
+    const randNumber = Math.floor(Math.random() * arr.length);
+    computerSelection = arr[randNumber];
+    computerChoiceDisplay.innerHTML = computerSelection;
 }
 
-function playRound(playerSelection, computerSelection){
-    playerSelection = playerSelection.toLowerCase();
+possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
+    playerSelection = e.target.id
+    userChoiceDisplay.innerHTML = playerSelection
+    computerPlay()
+    playRound()
+    game()
+  }))
+
+
+function playRound(){
     if (playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'scissors' && computerSelection == 'paper' 
             || playerSelection == 'rock' && computerSelection == 'scissors'){
-        return 'win';
-    }else if (computerSelection == 'rock' && playerSelection == 'paper' || computerSelection == 'scissors' && playerSelection == 'paper' 
-            || computerSelection == 'rock' && playerSelection == 'scissors'){
-        return 'lose';
-    }else if(playerSelection == computerSelection){
-        return 'tie';
-    } 
+        result = 'You win';
+    }
+    else if (playerSelection == computerSelection){
+        result = 'Tie';
+    }else{
+        result = 'You lose';
+    }
+    resultDisplay.innerHTML = result; 
 }
 
 function game(){
-    let pScore = 0;
-    let cScore = 0;
 
-    for (let i = 0; i < 5; i++){
-        const playerSelection = window.prompt('Choose: rock, paper or scissors.');
-        const computerSelection = computerPlay();
-        const message = playRound(playerSelection, computerSelection);
-
-        if (message == 'win'){
+        if (result == 'You win'){
             pScore++;
-            console.log('You win this turn!');
-        }else if(message == 'lose'){
+        }else if(result == 'You lose'){
             cScore++;
-            console.log("Oh man! Maybe youll win next round..");
-        }else if(message == 'tie'){
-            console.log("It's a tie. Play again.");
         }
-    }
+    
+        if(pScore === 6 || cScore === 6){
+            pScore = 0;
+            cScore = 0;
+        }
 
-    if (pScore > cScore) {
-        window.alert("You won the game!");
-    } else if (cScore > pScore) {
-        window.alert("It looks like the computer won..");
-    } else {
-        window.alert("It's a tie.");
-    }
+   scoreDisplay.innerHTML = pScore;
 }
-
